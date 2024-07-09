@@ -27,7 +27,7 @@
 		2A30310E2C38936400467F56 /* JobPostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostingView.swift; sourceTree = "<group>"; };
 		2A3031102C38942700467F56 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
 		2A6E69BE2C3C7F9200643B9A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2A6E69C42C3C8ECE00643B9A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ../../../../../.Trash/CoverCraft/CoverCraft/ContentView.swift; sourceTree = "<group>"; };
+		2A6E69C42C3C8ECE00643B9A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2A6E69C62C3C8EFB00643B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
