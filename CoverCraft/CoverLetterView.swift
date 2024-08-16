@@ -37,7 +37,7 @@ struct CoverLetterView: View {
 
     var body: some View {
         VStack {
-            Text("Cover Letter Creator")
+            Text("Cover Letter Generator")
                 .font(.title)
                 .padding()
 
@@ -46,7 +46,7 @@ struct CoverLetterView: View {
                 .padding()
 
             Button(action: generateCoverLetter) {
-                Text("Create Cover Letter")
+                Text("Generate Cover Letter")
                     .padding()
                     .background(Color.blue)
                     .foregroundColor(.white)
