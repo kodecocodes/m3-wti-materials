@@ -34,17 +34,29 @@ import SwiftUI
 
 struct CoverLetterView: View {
     @State private var coverLetterText: String = "Dear Hiring Manager,\n\n"
-
+    
     var body: some View {
         VStack {
             Text("Cover Letter Creator")
                 .font(.title)
                 .padding()
-
-            CustomTextView(text: $coverLetterText)
+            
+            // MARK: - Lesson Two or Three
+            
+            // CustomTextView(text: $coverLetterText)
+            
+            // MARK: - Lesson One
+            
+            // for Lesson One, we'll use the SwiftUI view and show how one can use the writingToolsBehavior view modifier to control which version of the tools displays
+            
+            TextEditor(text: $coverLetterText)
+                .writingToolsBehavior(WritingToolsBehavior.complete)
+                .scrollContentBackground(.hidden)
+                .background(Color(UIColor.systemGray5))
+                .cornerRadius(8)
                 .frame(height: 300)
-                .padding()
-
+                .padding(.horizontal)
+            
             Button(action: generateCoverLetter) {
                 Text("Create Cover Letter")
                     .padding()
@@ -55,7 +67,7 @@ struct CoverLetterView: View {
         }
         .padding()
     }
-
+    
     func generateCoverLetter() {
         // This is where you would integrate Writing Tools to generate the cover letter
         // WritingTools.proofread(text: coverLetterText) { suggestions in
