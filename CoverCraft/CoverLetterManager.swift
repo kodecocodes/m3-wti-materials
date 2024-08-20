@@ -30,60 +30,57 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
-import UIKit
+import Foundation
+import Observation
 
-struct CustomTextView: UIViewRepresentable {
-    @Binding var text: String
-    var coverLetterManager = CoverLetterManager.shared
-    var coverLetter: CoverLetter
+@Observable
+class CoverLetterManager {
+    static let shared = CoverLetterManager()
 
+    private(set) var coverLetters: [CoverLetter] = []
 
-    func makeUIView(context: Context) -> UITextView {
-        let textView = UITextView()
-        textView.delegate = context.coordinator
-        textView.isEditable = true
-        textView.font = UIFont.systemFont(ofSize: 16)
-        textView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+    private let storageURL: URL
 
-        // Setup for TextKit 2
-        // textView.textStorage = NSTextStorage()
-        // let layoutManager = NSLayoutManager()
-        // let textContainer = NSTextContainer(size: CGSize(width: textView.frame.width, height: .greatestFiniteMagnitude))
-        // layoutManager.addTextContainer(textContainer)
-        // textView.textContainer = textContainer
-        // textView.textStorage.addLayoutManager(layoutManager)
-
-        textView.text = text
-        return textView
-    }
-
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = text
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    class Coordinator: NSObject, UITextViewDelegate {
-        var parent: CustomTextView
-
-        init(_ parent: CustomTextView) {
-            self.parent = parent
+    private init() {
+        let fileManager = FileManager.default
+        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            fatalError("Could not locate document directory.")
         }
+        storageURL = documentsURL.appendingPathComponent("CoverLetters.plist")
+        loadCoverLetters()
+    }
 
-        func textViewDidChange(_ textView: UITextView) {
-            parent.text = textView.text
-            var updatedLetter = parent.coverLetter
-            updatedLetter.content = textView.text
-            parent.coverLetterManager.saveCoverLetter(updatedLetter)
+    private func loadCoverLetters() {
+        do {
+            let data = try Data(contentsOf: storageURL)
+            let decoder = PropertyListDecoder()
+            coverLetters = try decoder.decode([CoverLetter].self, from: data)
+        } catch {
+            print("Failed to load cover letters: \(error)")
         }
     }
-}
 
+    func saveCoverLetter(_ coverLetter: CoverLetter) {
+        if let index = coverLetters.firstIndex(where: { $0.id == coverLetter.id }) {
+            coverLetters[index] = coverLetter
+        } else {
+            coverLetters.append(coverLetter)
+        }
+        saveToDisk()
+    }
 
-#Preview {
-    let sampleCoverLetter = CoverLetter(title: "Sample Title", content: "Sample Text")
-    CustomTextView(text: .constant(sampleCoverLetter.content), coverLetter: sampleCoverLetter)
+    private func saveToDisk() {
+        do {
+            let encoder = PropertyListEncoder()
+            let data = try encoder.encode(coverLetters)
+            try data.write(to: storageURL)
+        } catch {
+            print("Failed to save cover letters: \(error)")
+        }
+    }
+
+    func deleteCoverLetter(_ coverLetter: CoverLetter) {
+        coverLetters.removeAll { $0.id == coverLetter.id }
+        saveToDisk()
+    }
 }
