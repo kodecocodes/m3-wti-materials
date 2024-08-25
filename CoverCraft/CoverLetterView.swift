@@ -34,34 +34,86 @@ import SwiftUI
 
 struct CoverLetterView: View {
     @State private var coverLetterText: String = "Dear Hiring Manager,\n\n"
-
+    private var coverLetterManager = CoverLetterManager.shared
+    @State private var coverLetter = CoverLetter(title: "Awesome Cover Letter", content: "Dear Hiring Manager,\n\n")
+    @State private var showingSavedDrafts = false
+    @State private var draftTitle: String = "Awesome Cover Letter"
+    @State private var showingSaveAlert: Bool = false
+    
     var body: some View {
         VStack {
-            Text("Cover Letter Generator")
+            Text("Cover Letter Creator")
                 .font(.title)
                 .padding()
-
-            CustomTextView(text: $coverLetterText)
+            
+            // MARK: - Lesson Two or Three
+            
+            // Use the UIKit text view for lessons focusing on UIKit and TextKit2
+            
+            //            CustomTextView(text: $coverLetterText, coverLetterManager: coverLetterManager, coverLetter: coverLetter)
+            
+            // MARK: - Lesson One
+            
+            // for Lesson One, we'll use the SwiftUI view and show how one can use the writingToolsBehavior view modifier to control which version of the tools displays
+            
+            TextEditor(text: $coverLetterText)
+                .writingToolsBehavior(WritingToolsBehavior.complete)
+                .scrollContentBackground(.hidden)
+                .background(Color(UIColor.systemGray5))
+                .cornerRadius(8)
                 .frame(height: 300)
-                .padding()
-
-            Button(action: generateCoverLetter) {
-                Text("Generate Cover Letter")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                .padding(.horizontal)
+            
+            HStack {
+                Button(action: {
+                    showingSaveAlert = true
+                }) {
+                    Text("Save New Draft")
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .alert("Save Draft", isPresented: $showingSaveAlert) {
+                    TextField("Enter draft name", text: $draftTitle)
+                    Button("Save", action: saveCoverLetter)
+                    Button("Cancel", role: .cancel, action: {})
+                } message: {
+                    Text("Please enter a name for your draft.")
+                }
+                
+                Button(action: {
+                    showingSavedDrafts = true
+                }) {
+                    Text("Load Saved Draft")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .sheet(isPresented: $showingSavedDrafts) {
+                    SavedDraftsView(onSelect: loadSavedDraft)
+                }
             }
+            .padding()
         }
         .padding()
     }
-
-    func generateCoverLetter() {
-        // This is where you would integrate Writing Tools to generate the cover letter
-        // WritingTools.proofread(text: coverLetterText) { suggestions in
-        //     applySuggestions(suggestions)
-        // }
-        print("Generate cover letter with Writing Tools")
+    
+    func saveCoverLetter() {
+        guard !draftTitle.isEmpty else { return }
+        let newCoverLetter = CoverLetter(title: draftTitle, content: coverLetterText)
+        coverLetterManager.saveCoverLetter(newCoverLetter)
+        draftTitle = ""
+    }
+    
+    func loadSavedDraft(_ selectedCoverLetter: CoverLetter) {
+        coverLetterText = selectedCoverLetter.content
+        coverLetter = selectedCoverLetter
+    }
+    
+    func deleteCoverLetter(at offsets: IndexSet) {
+        offsets.map { coverLetterManager.coverLetters[$0] }.forEach(coverLetterManager.deleteCoverLetter)
     }
 }
 
