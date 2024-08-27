@@ -78,7 +78,7 @@ struct ContentView: View {
           NavigationLink(destination: JobPostingView()) {
             HStack {
               Image(systemName: "magnifyingglass")
-              Text("Rsearch an Opportunity")
+              Text("Research an Opportunity")
                 .fontWeight(.semibold)
             }
             .frame(maxWidth: .infinity)

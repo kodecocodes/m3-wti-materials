@@ -16,6 +16,9 @@
 		2A6E69BF2C3C7F9200643B9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E69BE2C3C7F9200643B9A /* LaunchScreen.storyboard */; };
 		2A6E69C52C3C8ECE00643B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6E69C42C3C8ECE00643B9A /* ContentView.swift */; };
 		2A6E69C72C3C8EFB00643B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E69C62C3C8EFB00643B9A /* Assets.xcassets */; };
+		2AF2FE5A2C7507190058C06D /* CoverLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2FE592C7507190058C06D /* CoverLetter.swift */; };
+		2AF2FE5C2C7508950058C06D /* CoverLetterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2FE5B2C7508950058C06D /* CoverLetterManager.swift */; };
+		2AF2FE5E2C7532410058C06D /* SavedDraftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2FE5D2C7532410058C06D /* SavedDraftsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		2A6E69BE2C3C7F9200643B9A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A6E69C42C3C8ECE00643B9A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2A6E69C62C3C8EFB00643B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2AF2FE592C7507190058C06D /* CoverLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetter.swift; sourceTree = "<group>"; };
+		2AF2FE5B2C7508950058C06D /* CoverLetterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterManager.swift; sourceTree = "<group>"; };
+		2AF2FE5D2C7532410058C06D /* SavedDraftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDraftsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +70,10 @@
 				2A3030FC2C38915F00467F56 /* CoverCraftApp.swift */,
 				2A6E69C42C3C8ECE00643B9A /* ContentView.swift */,
 				2A30310A2C38920A00467F56 /* CoverLetterView.swift */,
+				2AF2FE5D2C7532410058C06D /* SavedDraftsView.swift */,
 				2A30310C2C38926C00467F56 /* CustomTextView.swift */,
+				2AF2FE592C7507190058C06D /* CoverLetter.swift */,
+				2AF2FE5B2C7508950058C06D /* CoverLetterManager.swift */,
 				2A30310E2C38936400467F56 /* JobPostingView.swift */,
 				2A3031102C38942700467F56 /* SkillsView.swift */,
 				2A6E69C62C3C8EFB00643B9A /* Assets.xcassets */,
@@ -89,6 +98,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A3031072C38916000467F56 /* Build configuration list for PBXNativeTarget "CoverCraft" */;
 			buildPhases = (
+				2AFD2A222C7544FC00B8FF7E /* ShellScript */,
 				2A3030F52C38915F00467F56 /* Sources */,
 				2A3030F62C38915F00467F56 /* Frameworks */,
 				2A3030F72C38915F00467F56 /* Resources */,
@@ -148,15 +158,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2AFD2A222C7544FC00B8FF7E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2A3030F52C38915F00467F56 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF2FE5E2C7532410058C06D /* SavedDraftsView.swift in Sources */,
 				2A3031112C38942700467F56 /* SkillsView.swift in Sources */,
 				2A30310F2C38936400467F56 /* JobPostingView.swift in Sources */,
 				2A6E69C52C3C8ECE00643B9A /* ContentView.swift in Sources */,
 				2A30310B2C38920A00467F56 /* CoverLetterView.swift in Sources */,
+				2AF2FE5A2C7507190058C06D /* CoverLetter.swift in Sources */,
+				2AF2FE5C2C7508950058C06D /* CoverLetterManager.swift in Sources */,
 				2A30310D2C38926C00467F56 /* CustomTextView.swift in Sources */,
 				2A3030FD2C38915F00467F56 /* CoverCraftApp.swift in Sources */,
 			);
@@ -288,7 +321,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CoverCraft/Preview Content\"";
@@ -300,6 +332,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,7 +350,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CoverCraft/Preview Content\"";
@@ -329,6 +361,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
