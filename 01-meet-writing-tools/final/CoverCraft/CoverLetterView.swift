@@ -47,7 +47,7 @@ struct CoverLetterView: View {
                 .padding()
             
             TextEditor(text: $coverLetterText)
-//                .writingToolsBehavior(WritingToolsBehavior.complete)
+                .writingToolsBehavior(WritingToolsBehavior.complete)
                 .scrollContentBackground(.hidden)
                 .background(Color(UIColor.systemGray5))
                 .cornerRadius(8)
