@@ -46,18 +46,8 @@ struct CoverLetterView: View {
                 .font(.title)
                 .padding()
             
-            // MARK: - Lesson Two or Three
-            
-            // Use the UIKit text view for lessons focusing on UIKit and TextKit2
-            
-            //            CustomTextView(text: $coverLetterText, coverLetterManager: coverLetterManager, coverLetter: coverLetter)
-            
-            // MARK: - Lesson One
-            
-            // for Lesson One, we'll use the SwiftUI view and show how one can use the writingToolsBehavior view modifier to control which version of the tools displays
-            
             TextEditor(text: $coverLetterText)
-                .writingToolsBehavior(WritingToolsBehavior.complete)
+//                .writingToolsBehavior(WritingToolsBehavior.complete)
                 .scrollContentBackground(.hidden)
                 .background(Color(UIColor.systemGray5))
                 .cornerRadius(8)
