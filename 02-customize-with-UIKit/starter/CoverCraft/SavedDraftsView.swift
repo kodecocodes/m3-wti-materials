@@ -33,47 +33,45 @@
 import SwiftUI
 
 struct SavedDraftsView: View {
-    var onSelect: (CoverLetter) -> Void
-    var coverLetterManager = CoverLetterManager.shared
-    @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        NavigationView {
-            List {
-                if coverLetterManager.coverLetters.isEmpty {
-                    Text("No saved drafts available.")
-                        .foregroundColor(.gray)
-                        .italic()
-                } else {
-                    ForEach(coverLetterManager.coverLetters) { letter in
-                        Button(action: {
-                            onSelect(letter)
-                            presentationMode.wrappedValue.dismiss()
-                        }) {
-                            VStack(alignment: .leading) {
-                                Text(letter.title)
-                                    .font(.headline)
-                                Text(letter.content)
-                                    .font(.subheadline)
-                                    .lineLimit(1)
-                            }
-                        }
-                    }
-                    .onDelete(perform: deleteCoverLetter)
-                }
-            }
-            .navigationBarTitle("Saved Drafts")
-            .navigationBarItems(leading: Button("Close") {
-                presentationMode.wrappedValue.dismiss()
+  var onSelect: (CoverLetter) -> Void
+  var coverLetterManager = CoverLetterManager.shared
+  @Environment(\.presentationMode) var presentationMode
+  var body: some View {
+    NavigationView {
+      List {
+        if coverLetterManager.coverLetters.isEmpty {
+          Text("No saved drafts available.")
+            .foregroundColor(.gray)
+            .italic()
+        } else {
+          ForEach(coverLetterManager.coverLetters) { letter in
+            Button(action: {
+              onSelect(letter)
+              presentationMode.wrappedValue.dismiss()
+            }, label: {
+              VStack(alignment: .leading) {
+                Text(letter.title)
+                  .font(.headline)
+                Text(letter.content)
+                  .font(.subheadline)
+                  .lineLimit(1)
+              }
             })
+          }
+          .onDelete(perform: deleteCoverLetter)
         }
+      }
+      .navigationBarTitle("Saved Drafts")
+      .navigationBarItems(leading: Button("Close") {
+        presentationMode.wrappedValue.dismiss()
+      })
     }
-    
-    func deleteCoverLetter(at offsets: IndexSet) {
-        offsets.map { coverLetterManager.coverLetters[$0] }.forEach(coverLetterManager.deleteCoverLetter)
-    }
+  }
+  func deleteCoverLetter(at offsets: IndexSet) {
+    offsets.map { coverLetterManager.coverLetters[$0] }.forEach(coverLetterManager.deleteCoverLetter)
+  }
 }
 
 #Preview {
-    SavedDraftsView(onSelect: { _ in })
+  SavedDraftsView(onSelect: { _ in })
 }

@@ -35,52 +35,52 @@ import Observation
 
 @Observable
 class CoverLetterManager {
-    static let shared = CoverLetterManager()
+  static let shared = CoverLetterManager()
 
-    private(set) var coverLetters: [CoverLetter] = []
+  private(set) var coverLetters: [CoverLetter] = []
 
-    private let storageURL: URL
+  private let storageURL: URL
 
-    private init() {
-        let fileManager = FileManager.default
-        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            fatalError("Could not locate document directory.")
-        }
-        storageURL = documentsURL.appendingPathComponent("CoverLetters.plist")
-        loadCoverLetters()
+  private init() {
+    let fileManager = FileManager.default
+    guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+      fatalError("Could not locate document directory.")
     }
+    storageURL = documentsURL.appendingPathComponent("CoverLetters.plist")
+    loadCoverLetters()
+  }
 
-    private func loadCoverLetters() {
-        do {
-            let data = try Data(contentsOf: storageURL)
-            let decoder = PropertyListDecoder()
-            coverLetters = try decoder.decode([CoverLetter].self, from: data)
-        } catch {
-            print("Failed to load cover letters: \(error)")
-        }
+  private func loadCoverLetters() {
+    do {
+      let data = try Data(contentsOf: storageURL)
+      let decoder = PropertyListDecoder()
+      coverLetters = try decoder.decode([CoverLetter].self, from: data)
+    } catch {
+      print("Failed to load cover letters: \(error)")
     }
+  }
 
-    func saveCoverLetter(_ coverLetter: CoverLetter) {
-        if let index = coverLetters.firstIndex(where: { $0.id == coverLetter.id }) {
-            coverLetters[index] = coverLetter
-        } else {
-            coverLetters.append(coverLetter)
-        }
-        saveToDisk()
+  func saveCoverLetter(_ coverLetter: CoverLetter) {
+    if let index = coverLetters.firstIndex(where: { $0.id == coverLetter.id }) {
+      coverLetters[index] = coverLetter
+    } else {
+      coverLetters.append(coverLetter)
     }
+    saveToDisk()
+  }
 
-    private func saveToDisk() {
-        do {
-            let encoder = PropertyListEncoder()
-            let data = try encoder.encode(coverLetters)
-            try data.write(to: storageURL)
-        } catch {
-            print("Failed to save cover letters: \(error)")
-        }
+  private func saveToDisk() {
+    do {
+      let encoder = PropertyListEncoder()
+      let data = try encoder.encode(coverLetters)
+      try data.write(to: storageURL)
+    } catch {
+      print("Failed to save cover letters: \(error)")
     }
+  }
 
-    func deleteCoverLetter(_ coverLetter: CoverLetter) {
-        coverLetters.removeAll { $0.id == coverLetter.id }
-        saveToDisk()
-    }
+  func deleteCoverLetter(_ coverLetter: CoverLetter) {
+    coverLetters.removeAll { $0.id == coverLetter.id }
+    saveToDisk()
+  }
 }
