@@ -34,9 +34,9 @@ import SwiftUI
 
 @main
 struct CoverCraftApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }

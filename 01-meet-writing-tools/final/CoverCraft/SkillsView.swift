@@ -33,37 +33,33 @@
 import SwiftUI
 
 struct SkillsView: View {
-    @State private var skills: String = ""
-
-    var body: some View {
-        VStack {
-            Text("Define Your Skills")
-                .font(.title)
-                .padding()
-
-            TextEditor(text: $skills)
-                .frame(height: 200)
-                .border(Color.gray, width: 1)
-                .padding()
-
-            Button(action: saveSkills) {
-                Text("Save Skills")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
-        }
+  @State private var skills: String = ""
+  var body: some View {
+    VStack {
+      Text("Define Your Skills")
+        .font(.title)
         .padding()
+      TextEditor(text: $skills)
+        .frame(height: 200)
+        .border(Color.gray, width: 1)
+        .padding()
+      Button(action: saveSkills) {
+        Text("Save Skills")
+          .padding()
+          .background(Color.blue)
+          .foregroundColor(.white)
+          .cornerRadius(8)
+      }
     }
-
-    func saveSkills() {
-        // Logic to save skills
-        print("Skills saved: \(skills)")
-    }
+    .padding()
+}  
+  func saveSkills() {
+    // Logic to save skills
+    print("Skills saved: \(skills)")
+  }
 }
 
 
 #Preview {
-    SkillsView()
+  SkillsView()
 }

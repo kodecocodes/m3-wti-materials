@@ -35,9 +35,12 @@ import SwiftUI
 struct ContentView: View {
   var body: some View {
     NavigationView {
-      ZStack() {
+      ZStack {
         LinearGradient(
-          gradient: Gradient(colors: [Color(red: 1.0, green: 0.5, blue: 0.0).opacity(0.3), Color(red: 1.0, green: 0.5, blue: 0.0).opacity(0.1)]),
+          gradient: Gradient(colors: [
+            Color(red: 1.0, green: 0.5, blue: 0.0).opacity(0.3),
+            Color(red: 1.0, green: 0.5, blue: 0.0).opacity(0.1)
+          ]),
           startPoint: .top,
           endPoint: .bottom
         )

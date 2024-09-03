@@ -33,81 +33,78 @@
 import SwiftUI
 
 struct CoverLetterView: View {
-    @State private var coverLetterText: String = "Dear Hiring Manager,\n\n"
-    private var coverLetterManager = CoverLetterManager.shared
-    @State private var coverLetter = CoverLetter(title: "Awesome Cover Letter", content: "Dear Hiring Manager,\n\n")
-    @State private var showingSavedDrafts = false
-    @State private var draftTitle: String = "Awesome Cover Letter"
-    @State private var showingSaveAlert: Bool = false
-    
-    var body: some View {
-        VStack {
-            Text("Cover Letter Creator")
-                .font(.title)
-                .padding()
-            
-            TextEditor(text: $coverLetterText)
-                .writingToolsBehavior(WritingToolsBehavior.complete)
-                .scrollContentBackground(.hidden)
-                .background(Color(UIColor.systemGray5))
-                .cornerRadius(8)
-                .frame(height: 300)
-                .padding(.horizontal)
-            
-            HStack {
-                Button(action: {
-                    showingSaveAlert = true
-                }) {
-                    Text("Save New Draft")
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                .alert("Save Draft", isPresented: $showingSaveAlert) {
-                    TextField("Enter draft name", text: $draftTitle)
-                    Button("Save", action: saveCoverLetter)
-                    Button("Cancel", role: .cancel, action: {})
-                } message: {
-                    Text("Please enter a name for your draft.")
-                }
-                
-                Button(action: {
-                    showingSavedDrafts = true
-                }) {
-                    Text("Load Saved Draft")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                .sheet(isPresented: $showingSavedDrafts) {
-                    SavedDraftsView(onSelect: loadSavedDraft)
-                }
-            }
-            .padding()
-        }
+  @State private var coverLetterText: String = "Dear Hiring Manager,\n\n"
+  private var coverLetterManager = CoverLetterManager.shared
+  @State private var coverLetter = CoverLetter(title: "Awesome Cover Letter", content: "Dear Hiring Manager,\n\n")
+  @State private var showingSavedDrafts = false
+  @State private var draftTitle: String = "Awesome Cover Letter"
+  @State private var showingSaveAlert: Bool = false
+  var body: some View {
+    VStack {
+      Text("Cover Letter Creator")
+        .font(.title)
         .padding()
+      TextEditor(text: $coverLetterText)
+        .writingToolsBehavior(WritingToolsBehavior.complete)
+        .scrollContentBackground(.hidden)
+        .background(Color(UIColor.systemGray5))
+        .cornerRadius(8)
+        .frame(height: 300)
+        .padding(.horizontal)
+      HStack {
+        Button(action: {
+          showingSaveAlert = true
+        }, label: {
+          Text("Save New Draft")
+            .padding()
+            .background(Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+        })
+        .alert("Save Draft", isPresented: $showingSaveAlert) {
+          TextField("Enter draft name", text: $draftTitle)
+          Button("Save", action: saveCoverLetter)
+          Button("Cancel", role: .cancel, action: {})
+        } message: {
+          Text("Please enter a name for your draft.")
+        }
+        
+        Button(action: {
+          showingSavedDrafts = true
+        }) {
+          Text("Load Saved Draft")
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+        }
+        .sheet(isPresented: $showingSavedDrafts) {
+          SavedDraftsView(onSelect: loadSavedDraft)
+        }
+      }
+      .padding()
     }
-    
-    func saveCoverLetter() {
-        guard !draftTitle.isEmpty else { return }
-        let newCoverLetter = CoverLetter(title: draftTitle, content: coverLetterText)
-        coverLetterManager.saveCoverLetter(newCoverLetter)
-        draftTitle = ""
-    }
-    
-    func loadSavedDraft(_ selectedCoverLetter: CoverLetter) {
-        coverLetterText = selectedCoverLetter.content
-        coverLetter = selectedCoverLetter
-    }
-    
-    func deleteCoverLetter(at offsets: IndexSet) {
-        offsets.map { coverLetterManager.coverLetters[$0] }.forEach(coverLetterManager.deleteCoverLetter)
-    }
+    .padding()
+  }
+  
+  func saveCoverLetter() {
+    guard !draftTitle.isEmpty else { return }
+    let newCoverLetter = CoverLetter(title: draftTitle, content: coverLetterText)
+    coverLetterManager.saveCoverLetter(newCoverLetter)
+    draftTitle = ""
+  }
+  
+  func loadSavedDraft(_ selectedCoverLetter: CoverLetter) {
+    coverLetterText = selectedCoverLetter.content
+    coverLetter = selectedCoverLetter
+  }
+  
+  func deleteCoverLetter(at offsets: IndexSet) {
+    offsets.map { coverLetterManager.coverLetters[$0] }.forEach(coverLetterManager.deleteCoverLetter)
+  }
 }
 
 
 #Preview {
-    CoverLetterView()
+  CoverLetterView()
 }
