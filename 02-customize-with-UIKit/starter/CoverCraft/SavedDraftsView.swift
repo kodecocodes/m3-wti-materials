@@ -34,7 +34,7 @@ import SwiftUI
 
 struct SavedDraftsView: View {
   var onSelect: (CoverLetter) -> Void
-  var coverLetterManager = CoverLetterManager.shared
+  @State var coverLetterManager = CoverLetterManager.shared
   @Environment(\.presentationMode) var presentationMode
   var body: some View {
     NavigationView {
