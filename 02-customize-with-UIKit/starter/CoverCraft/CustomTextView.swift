@@ -43,7 +43,11 @@ struct CustomTextView: UIViewRepresentable {
     textView.delegate = context.coordinator
     textView.isEditable = true
     textView.font = UIFont.systemFont(ofSize: 16)
-    textView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+    if UITraitCollection.current.userInterfaceStyle == .dark {
+      textView.backgroundColor = UIColor(white: 0.05, alpha: 1)
+    } else {
+      textView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+    }
     textView.text = text
     return textView
   }
