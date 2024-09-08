@@ -51,12 +51,15 @@ struct CustomTextView: UIViewRepresentable {
     textView.text = text
     return textView
   }
+
   func updateUIView(_ uiView: UITextView, context: Context) {
     uiView.text = text
   }
+
   func makeCoordinator() -> Coordinator {
     Coordinator(self)
   }
+    
   class Coordinator: NSObject, UITextViewDelegate {
     var parent: CustomTextView
 
