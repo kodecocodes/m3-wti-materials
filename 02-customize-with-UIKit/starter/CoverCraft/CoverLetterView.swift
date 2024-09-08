@@ -39,6 +39,7 @@ struct CoverLetterView: View {
   @State private var showingSavedDrafts = false
   @State private var draftTitle: String = "Awesome Cover Letter"
   @State private var showingSaveAlert: Bool = false
+
   var body: some View {
     VStack {
       Text("Cover Letter Creator")
@@ -85,18 +86,22 @@ struct CoverLetterView: View {
     }
     .padding()
   }
+
   func saveCoverLetter() {
     guard !draftTitle.isEmpty else { return }
     let newCoverLetter = CoverLetter(title: draftTitle, content: coverLetterText)
     coverLetterManager.saveCoverLetter(newCoverLetter)
     draftTitle = ""
   }
+
   func loadSavedDraft(_ selectedCoverLetter: CoverLetter) {
     coverLetterText = selectedCoverLetter.content
     coverLetter = selectedCoverLetter
   }
+
   func deleteCoverLetter(at offsets: IndexSet) {
-    offsets.map { coverLetterManager.coverLetters[$0] }.forEach(coverLetterManager.deleteCoverLetter)
+    offsets.map { coverLetterManager.coverLetters[$0] }
+      .forEach(coverLetterManager.deleteCoverLetter)
   }
 }
 
