@@ -33,9 +33,10 @@
 import SwiftUI
 
 struct SavedDraftsView: View {
-  var onSelect: (CoverLetter) -> Void
-  @State var coverLetterManager = CoverLetterManager.shared
+  @State private var coverLetterManager = CoverLetterManager.shared
   @Environment(\.presentationMode) var presentationMode
+  var onSelect: (CoverLetter) -> Void
+
   var body: some View {
     NavigationView {
       List {
@@ -67,11 +68,12 @@ struct SavedDraftsView: View {
       })
     }
   }
+
   func deleteCoverLetter(at offsets: IndexSet) {
     offsets.map { coverLetterManager.coverLetters[$0] }.forEach(coverLetterManager.deleteCoverLetter)
   }
 }
 
 #Preview {
-  SavedDraftsView(onSelect: { _ in })
+  SavedDraftsView { _ in }
 }

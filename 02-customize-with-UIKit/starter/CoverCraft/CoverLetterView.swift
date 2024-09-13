@@ -65,7 +65,7 @@ struct CoverLetterView: View {
         .alert("Save Draft", isPresented: $showingSaveAlert) {
           TextField("Enter draft name", text: $draftTitle)
           Button("Save", action: saveCoverLetter)
-          Button("Cancel", role: .cancel, action: {})
+          Button("Cancel", role: .cancel) {}
         } message: {
           Text("Please enter a name for your draft.")
         }
