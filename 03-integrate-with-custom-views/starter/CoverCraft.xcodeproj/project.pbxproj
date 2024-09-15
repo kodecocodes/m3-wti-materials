@@ -13,6 +13,7 @@
 		2A30310D2C38926C00467F56 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30310C2C38926C00467F56 /* CustomTextView.swift */; };
 		2A30310F2C38936400467F56 /* JobPostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30310E2C38936400467F56 /* JobPostingView.swift */; };
 		2A3031112C38942700467F56 /* SkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3031102C38942700467F56 /* SkillsView.swift */; };
+		2A6802D52C96415F00039010 /* CustomSkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6802D42C963FD100039010 /* CustomSkillsView.swift */; };
 		2A6E69BF2C3C7F9200643B9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E69BE2C3C7F9200643B9A /* LaunchScreen.storyboard */; };
 		2A6E69C52C3C8ECE00643B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6E69C42C3C8ECE00643B9A /* ContentView.swift */; };
 		2A6E69C72C3C8EFB00643B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E69C62C3C8EFB00643B9A /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		2A30310C2C38926C00467F56 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		2A30310E2C38936400467F56 /* JobPostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostingView.swift; sourceTree = "<group>"; };
 		2A3031102C38942700467F56 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
+		2A6802D42C963FD100039010 /* CustomSkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSkillsView.swift; sourceTree = "<group>"; };
 		2A6E69BE2C3C7F9200643B9A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A6E69C42C3C8ECE00643B9A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2A6E69C62C3C8EFB00643B9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				2AF2FE5B2C7508950058C06D /* CoverLetterManager.swift */,
 				2A30310E2C38936400467F56 /* JobPostingView.swift */,
 				2A3031102C38942700467F56 /* SkillsView.swift */,
+				2A6802D42C963FD100039010 /* CustomSkillsView.swift */,
 				2A6E69C62C3C8EFB00643B9A /* Assets.xcassets */,
 				2A6E69BE2C3C7F9200643B9A /* LaunchScreen.storyboard */,
 				2A3031022C38916000467F56 /* Preview Content */,
@@ -190,6 +193,7 @@
 				2A30310B2C38920A00467F56 /* CoverLetterView.swift in Sources */,
 				2AF2FE5A2C7507190058C06D /* CoverLetter.swift in Sources */,
 				2AF2FE5C2C7508950058C06D /* CoverLetterManager.swift in Sources */,
+				2A6802D52C96415F00039010 /* CustomSkillsView.swift in Sources */,
 				2A30310D2C38926C00467F56 /* CustomTextView.swift in Sources */,
 				2A3030FD2C38915F00467F56 /* CoverCraftApp.swift in Sources */,
 			);
